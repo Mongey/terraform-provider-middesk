@@ -152,6 +152,9 @@ func (c *Client) UpdateWebhook(id string, request *WebhookRequest) (*WebhookResp
 	if err != nil {
 		return nil, err
 	}
+	if res.StatusCode >= 400 {
+		return nil, fmt.Errorf("error making request: %s", body)
+	}
 
 	webhook := &WebhookResponse{}
 	err = json.Unmarshal(body, webhook)
