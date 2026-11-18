@@ -1,3 +1,5 @@
+version: 2
+
 project_name: terraform-provider-middesk
 builds:
   - binary: "{{ .ProjectName }}_v{{ .Version }}"
@@ -21,7 +23,7 @@ builds:
       - goos: freebsd
         goarch: 'arm64'
 archives:
-- format: zip
+- formats: [zip]
   name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
 
 checksum:
@@ -38,4 +40,4 @@ signs:
       - "--detach-sign"
       - "${artifact}"
 snapshot:
-  name_template: "{{ .Version }}-next"
+  version_template: "{{ .Version }}-next"
